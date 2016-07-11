@@ -31,14 +31,14 @@ AcmeDb.prototype.addEmployee = function(name, id) {
 AcmeDb.prototype.getEmployee = function(id) {
 	for(i = 0; i < this.employees.length; i++) {
 		if(this.employees[i].id === id) {
-			return this.employees[i].name;
+			return this.employees[i];
 		}
 	}
 };
 
 AcmeDb.prototype.deleteEmployee = function(name){
 	for(i = 0; i < this.employees.length; i++) {
-		if(this.employees[i].name === name) {
+		if(this.employees[i] === name) {
 			this.employees.splice(i, 1);
 		}
 	}
@@ -50,7 +50,7 @@ AcmeDb.prototype.groupedEmployees = function() {
 		if(!this.hasOwnProperty(this.employees[i].name[0])) {
 			this[this.employees[i].name[0]] = [];
 			this[this.employees[i].name[0]].push(this.employees[i]);
-		} else {
+		} else if (this[this.employees[i].name[0]].indexOf(this.employees[i]) === -1){
 			this[this.employees[i].name[0]].push(this.employees[i]);
 		}
 	}
